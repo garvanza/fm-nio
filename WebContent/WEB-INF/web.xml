@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+	http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="fm-nio"
+	version="3.1">
+
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>garvanza.fm.nio.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/wi/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>authFilter</filter-name>
+		<filter-class>garvanza.fm.nio.AuthFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>authFilter</filter-name>
+		<url-pattern>/auth</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<description></description>
+		<display-name>auth</display-name>
+		<servlet-name>auth</servlet-name>
+		<jsp-file>/WEB-INF/auth.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>auth</servlet-name>
+		<url-pattern>/auth</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description></description>
+		<display-name>op</display-name>
+		<servlet-name>op</servlet-name>
+		<jsp-file>/wi/op.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>op</servlet-name>
+		<url-pattern>/wi/op</url-pattern>
+	</servlet-mapping>
+
+	<!--security-constraint>
+		<web-resource-collection>
+			<web-resource-name>secured page</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint-->
+
+	<!-- ==== Default Session Configuration ==== -->
+	<!-- You can set the default session timeout (in minutes) for all newly -->
+	<!-- created sessions by modifying the value below. -->
+	<session-config>
+		<session-timeout>1</session-timeout>
+	</session-config>
+
+	<servlet>
+		<servlet-name>welcome</servlet-name>
+		<servlet-class>garvanza.fm.nio.Welcome</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>welcome</servlet-name>
+		<url-pattern>/welcome</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>dbport</servlet-name>
+		<servlet-class>garvanza.fm.nio.DBPort</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dbport</servlet-name>
+		<url-pattern>/dbport</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>invoiceport</servlet-name>
+		<servlet-class>garvanza.fm.nio.InvoicePort</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>invoiceport</servlet-name>
+		<url-pattern>/invoiceport</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>invoicecancelling</servlet-name>
+		<servlet-class>garvanza.fm.nio.InvoiceCancelling</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>invoicecancelling</servlet-name>
+		<url-pattern>/invoicecancelling</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>clienthistory</servlet-name>
+		<servlet-class>garvanza.fm.nio.ClientHistory</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>clienthistory</servlet-name>
+		<url-pattern>/clienthistory</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>consultthebox</servlet-name>
+		<servlet-class>garvanza.fm.nio.ConsultTheBox</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>consultthebox</servlet-name>
+		<url-pattern>/consultthebox</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>getclientbycode</servlet-name>
+		<servlet-class>garvanza.fm.nio.GetClientByCode</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getclientbycode</servlet-name>
+		<url-pattern>/getclientbycode</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>invoicepayment</servlet-name>
+		<servlet-class>garvanza.fm.nio.InvoicePayment</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>invoicepayment</servlet-name>
+		<url-pattern>/invoicepayment</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>getproductbycode</servlet-name>
+		<servlet-class>garvanza.fm.nio.GetProductByCode</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getproductbycode</servlet-name>
+		<url-pattern>/getproductbycode</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>clienthasaccess</servlet-name>
+		<servlet-class>garvanza.fm.nio.ClientHasAccess</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>clienthasaccess</servlet-name>
+		<url-pattern>/clienthasaccess</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>port</servlet-name>
+		<servlet-class>garvanza.fm.nio.Port</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>port</servlet-name>
+		<url-pattern>/port</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>clientauthenticate</servlet-name>
+		<servlet-class>garvanza.fm.nio.ClientAuthenticate</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>clientauthenticate</servlet-name>
+		<url-pattern>/clientauthenticate</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>changeclientstatus</servlet-name>
+		<servlet-class>garvanza.fm.nio.ChangeClientStatus</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>changeclientstatus</servlet-name>
+		<url-pattern>/changeclientstatus</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>searchinvoices</servlet-name>
+		<servlet-class>garvanza.fm.nio.SearchInvoices</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>searchinvoices</servlet-name>
+		<url-pattern>/searchinvoices</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>getthis</servlet-name>
+		<servlet-class>garvanza.fm.nio.Getthis</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getthis</servlet-name>
+		<url-pattern>/getthis</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>getinvoice</servlet-name>
+		<servlet-class>garvanza.fm.nio.GetInvoice</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getinvoice</servlet-name>
+		<url-pattern>/getinvoice</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>wishing</servlet-name>
+		<servlet-class>garvanza.fm.nio.Wishing</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>wishing</servlet-name>
+		<url-pattern>/wishing</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>facture</servlet-name>
+		<servlet-class>garvanza.fm.nio.Facturing</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>facture</servlet-name>
+		<url-pattern>/facture</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>updater</servlet-name>
+		<servlet-class>garvanza.fm.nio.Updater</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updater</servlet-name>
+		<url-pattern>/updater</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<display-name>DWR Servlet</display-name>
+		<servlet-name>dwr-invoker</servlet-name>
+		<servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>dwr-invoker</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>wi/init.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>
