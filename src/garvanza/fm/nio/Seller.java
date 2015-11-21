@@ -1,4 +1,7 @@
 package garvanza.fm.nio;
+
+import org.bson.Document;
+
 /*
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -6,9 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 */
-import org.json.JSONException;
+/*import org.json.JSONException;
 import org.json.JSONObject;
-
+*/
 /*@Entity*/
 public class Seller {
 
@@ -30,19 +33,9 @@ public class Seller {
     
     /*@Basic*/ private int sellerType;
     
-    public Seller(JSONObject json){
-    	try {
-			id=json.getLong("id");
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	try {
-			code=json.getString("code");
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    public Seller(Document json){
+		id=json.getLong("id");
+		code=json.getString("code");
     }
 
 	public Seller(String code, int sellerType) {

@@ -57,11 +57,11 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
-		<dependency>
+		<!--dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-			<version>20150729</version>
-		</dependency>
+			<version>20090211</version>
+		</dependency-->
 		<dependency>
 			<groupId>com.lowagie</groupId>
 			<artifactId>itext</artifactId>

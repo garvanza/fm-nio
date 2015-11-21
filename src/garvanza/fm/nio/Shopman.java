@@ -4,15 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.bson.Document;
-/*
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-*/
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import com.google.gson.Gson;
 
@@ -54,19 +45,11 @@ public class Shopman {
     	}
     }
     
-    public Shopman(JSONObject json) {
-    	try {
-			id=json.getLong("id");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		finally{id=-1l;}
-    	try {
-			login=json.getString("login");
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		finally{login="noauth";}
+    public Shopman(Document json) {
+		id=json.getLong("id");
+		if(id==null)id=-1l;
+		login=json.getString("login");
+		if(login==null)login="noauth";
 	}
 
 	public String getLogin() {

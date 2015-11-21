@@ -17,14 +17,17 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.commons.lang3.StringEscapeUtils;
-import org.json.JSONArray;
+import org.bson.Document;
+/*import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Document;
+*/
+//import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import garvanza.fm.nio.InvoiceLog.LogKind;
 import garvanza.fm.nio.db.Inventory;
@@ -95,13 +98,13 @@ public class Wishing extends HttpServlet {
 				String destinyJson=URLDecoder.decode(destinyParam,"utf-8");
 				String args=URLDecoder.decode(argsParam,"utf-8");
 				String command=URLDecoder.decode(commandParam,"utf-8");
-				JSONArray jList=null;
-				JSONObject jClient=null;
-				JSONObject jSeller=null;
-				JSONObject jAgent=null;
-				JSONObject jRequester=null;
-				JSONObject jShopman=null;
-				JSONObject jDestiny=null;
+				Document jList=null;
+				Document jClient=null;
+				Document jSeller=null;
+				Document jAgent=null;
+				Document jRequester=null;
+				Document jShopman=null;
+				Document jDestiny=null;
 				LinkedList<InvoiceItem> items=new LinkedList<InvoiceItem>();
 				Client client=null;
 				Client agent=null;
@@ -110,30 +113,28 @@ public class Wishing extends HttpServlet {
 				Destiny destiny=null;
 				Requester requester=null;
 				
-				try{
-					
-					jList=new JSONArray(listJson);
-					jClient=new JSONObject(clientJson);
-					jSeller=new JSONObject(sellerJson);
-					jAgent=new JSONObject(agentJson);
-					jRequester=new JSONObject(requesterJson);
-					jShopman=new JSONObject(shopmanJson);
-					jDestiny=new JSONObject(destinyJson);
+					jList=new Gson().fromJson(listJson, new TypeToken <LinkedList<Document>>(){}.getType());
+					jClient=new Gson().fromJson(listJson, Document.class);
+					jSeller=new Gson().fromJson(sellerJson, Document.class);
+					jAgent=new Gson().fromJson(agentJson, Document.class);
+					jRequester=new Gson().fromJson(requesterJson, Document.class);
+					jShopman=new Gson().fromJson(shopmanJson, Document.class);
+					jDestiny=new Gson().fromJson(destinyJson, Document.class);
 					
 					seller=new Seller(jSeller);
 					shopman=onlineClient.getShopman();
 					destiny=new Destiny(jDestiny);
 					requester=new Requester(jRequester);
-					for(int i=jList.length()-1;i>=0;i--){
+					for(int i=jList.size()-1;i>=0;i--){
 						//InvoiceItem item=new InvoiceItem(jList.getJSONObject(i));
-						InvoiceItem item=new Gson().fromJson(jList.getJSONObject(i).toString(), InvoiceItem.class);
+						InvoiceItem item=new Gson().fromJson(jList.get(i).toString(), InvoiceItem.class);
 						//System.out.println(item.toJson());
 						items.add(item);
 					}
 					client=ClientFactory.create(jClient);
 					agent=ClientFactory.create(jAgent);
 					System.out.println(new Gson().toJson(agent));
-				}catch(JSONException e){}
+
 				
 				String[] argsspl=null;
 				if(!args.equals(""))argsspl=args.split(" ");
@@ -337,7 +338,7 @@ public class Wishing extends HttpServlet {
 						//System.out.println("response from server "+cfdiResponse);
 						DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 						DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-						Document doc = dBuilder.parse(new ByteArrayInputStream(cfdiResponse.getBytes()));
+						org.w3c.dom.Document doc = dBuilder.parse(new ByteArrayInputStream(cfdiResponse.getBytes()));
 						NodeList nlist=doc.getElementsByTagName("codigo");
 						
 						if(nlist.item(0).getTextContent().equals("0")){
@@ -531,7 +532,7 @@ public class Wishing extends HttpServlet {
 		}
 	}
 	
-	private static Invoice getInvoice(JSONObject client, JSONArray products){
+	private static Invoice getInvoice(Document client, Document products){
 		return null;
 	}
 

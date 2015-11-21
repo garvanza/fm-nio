@@ -1,8 +1,10 @@
 package garvanza.fm.nio;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.bson.Document;
 
+/*import org.json.JSONException;
+import org.json.JSONObject;
+*/
 public class Destiny {
 	/*
     @Id
@@ -18,19 +20,9 @@ public class Destiny {
 		this.address = address;
 	}
     
-    public Destiny(JSONObject json) {
-    	try {
-			id=json.getLong("id");
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	try {
-			address=json.getString("address");
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    public Destiny(Document json) {
+		id=json.getLong("id");
+		address=json.getString("address");
 	}
 
 	public String getAddress() {

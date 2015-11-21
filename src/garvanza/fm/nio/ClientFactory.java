@@ -1,91 +1,89 @@
 package garvanza.fm.nio;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.bson.Document;
 
 public class ClientFactory{
 	
 	private ClientFactory(){}
 	
-	public static Client create(JSONObject json){
+	public static Client create(Document json){
 		System.out.println("creating client for "+json.toString());
 		Client client=null;
-		try{
 			String code="";
-			if(json.has("code")){
+			if(json.containsKey("code")){
 				code=json.getString("code").toUpperCase();
 			}
 			String consummer="";
-			if(json.has("consummer")){
+			if(json.containsKey("consummer")){
 				consummer=json.getString("consummer").toUpperCase();
 			}
 			int consummerType=1;
-			if(json.has("consummerType")){
-				consummerType=new Integer(json.getInt("consummerType"));
+			if(json.containsKey("consummerType")){
+				consummerType=new Integer(json.getInteger("consummerType"));
 			}
 			String address="";
-			if(json.has("address")){
+			if(json.containsKey("address")){
 				address=json.getString("address").toUpperCase();
 			}
 			String interiorNumber="";
-			if(json.has("interiorNumber")){
+			if(json.containsKey("interiorNumber")){
 				interiorNumber=json.getString("interiorNumber").toUpperCase();
 			}
 			String exteriorNumber="";
-			if(json.has("exteriorNumber")){
+			if(json.containsKey("exteriorNumber")){
 				exteriorNumber=json.getString("exteriorNumber").toUpperCase();
 			}
 			String suburb="";
-			if(json.has("suburb")){
+			if(json.containsKey("suburb")){
 				suburb=json.getString("suburb").toUpperCase();
 			}
 			String locality="";
-			if(json.has("locality")){
+			if(json.containsKey("locality")){
 				locality=json.getString("locality").toUpperCase();
 			}
 			String city="";
-			if(json.has("city")){
+			if(json.containsKey("city")){
 				city=json.getString("city").toUpperCase();
 			}
 			String country="";
-			if(json.has("country")){
+			if(json.containsKey("country")){
 				country=json.getString("country").toUpperCase();
 			}
 			String state="";
-			if(json.has("state")){
+			if(json.containsKey("state")){
 				state=json.getString("state").toUpperCase();
 			}
 			String email="";
-			if(json.has("email")){
+			if(json.containsKey("email")){
 				email=json.getString("email").toUpperCase();
 			}
 			String cp="";
-			if(json.has("cp")){
+			if(json.containsKey("cp")){
 				cp=json.getString("cp").toUpperCase();
 			}
 			String rfc="";
-			if(json.has("rfc")){
+			if(json.containsKey("rfc")){
 				rfc=json.getString("rfc").toUpperCase();
 			}
 			String tel="";
-			if(json.has("tel")){
+			if(json.containsKey("tel")){
 				tel=json.getString("tel").toUpperCase();
 			}
 			int payment=0;
-			if(json.has("payment")){
-				payment=new Integer(json.getInt("payment"));
+			if(json.containsKey("payment")){
+				payment=new Integer(json.getInteger("payment"));
 			}
 			String reference="";
-			if(json.has("reference")){
+			if(json.containsKey("reference")){
 				reference=json.getString("reference").toUpperCase();
 			}
 			String aditionalReference="";
-			if(json.has("aditionalReference")){
+			if(json.containsKey("aditionalReference")){
 				aditionalReference=json.getString("aditionalReference").toUpperCase();
 			}
 			client=new Client(code, consummer, consummerType, address, interiorNumber, exteriorNumber, suburb, locality, city, country, state, email, cp, rfc, tel, payment, reference, aditionalReference);
 			client.setCode(client.getHash());
-		}catch(JSONException j){System.out.println("json exception");j.printStackTrace();}
+		
 		System.out.println("client succesfuly created");
 		return client;
 		

@@ -20,9 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bson.Document;
-import org.json.JSONArray;
+/*import org.json.JSONArray;
 import org.json.JSONObject;
-
+*/
 import com.google.gson.Gson;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCursor;
@@ -63,10 +63,10 @@ public class DBPort extends HttpServlet{
 				returnRecords(request, response, onlineClient);
 				return;
 			}
-			else if(dc.equals(PRODUCT_INVENTORY_ADD)){
+			/*else if(dc.equals(PRODUCT_INVENTORY_ADD)){
 				productInventoryAdd(request, response, onlineClient);
 				return;
-			}
+			}*/
 			else if(dc.equals(Commands.RESET_PRODUCT_INVENTORY)){
 				resetProductInventory(request, response, onlineClient);
 				return;
@@ -416,6 +416,7 @@ public class DBPort extends HttpServlet{
 			e.printStackTrace();
 		}
 	}
+	/*
 	private void productInventoryAdd(HttpServletRequest request, HttpServletResponse response,OnlineClient onlineClient){
 		try{
 			if(
@@ -506,7 +507,7 @@ public class DBPort extends HttpServlet{
 		catch(Exception e){
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	private void sample(HttpServletRequest request, HttpServletResponse response,OnlineClient onlineClient){
 		try{

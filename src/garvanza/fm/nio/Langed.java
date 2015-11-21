@@ -4,12 +4,15 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONException;
+import org.bson.Document;
+/*import org.json.JSONException;
 import org.json.JSONObject;
+*/
+import com.google.gson.Gson;
 
 public class Langed {
 
-	private static Map<String,JSONObject> json=new HashMap<String, JSONObject>();
+	private static Map<String,Document> json=new HashMap<String, Document>();
 	
 	private Langed(Class<Object> class_){
 		
@@ -25,20 +28,14 @@ public class Langed {
 			System.out.println(te.getFileName());
 		}*/
 		String name=traceElement.getClassName();
-		try {
-			return fromLang_(name, locale, key, args);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		return fromLang_(name, locale, key, args);
 	}
-	private static String fromLang_(String name, String locale, String key, String... args) throws JSONException{
+	private static String fromLang_(String name, String locale, String key, String... args){
 		if(json.containsKey(name)){
-			JSONObject jsono=json.get(name);
-			if(jsono.has(key)){
-				JSONObject theKey=(JSONObject)jsono.get(key);
-				if(theKey.has(locale)){
+			Document jsono=json.get(name);
+			if(jsono.containsKey(key)){
+				Document theKey=(Document)jsono.get(key);
+				if(theKey.containsKey(locale)){
 					return getf((String)theKey.get(locale),args);
 				}
 				else {
@@ -46,7 +43,7 @@ public class Langed {
 				}
 			}
 			else {
-				throw new JSONException(key +" not found");
+				return "[No doc found]";
 			}
 		}
 		else {
@@ -63,13 +60,8 @@ public class Langed {
 			InputStream is= clazz.getResourceAsStream(resource);
 			
 			String jsonStr=Utils.getStringFromInputStream(is);
-			JSONObject jsonObject=null;
-			try {
-				jsonObject = new JSONObject(jsonStr);
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			Document jsonObject=null;
+			jsonObject = new Gson().fromJson(jsonStr,Document.class);
 			json.put(name, jsonObject);
 			return fromLang_(name, locale, key, args);
 		}

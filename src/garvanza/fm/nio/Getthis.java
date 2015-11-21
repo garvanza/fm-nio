@@ -1,15 +1,18 @@
 package garvanza.fm.nio;
 
 import java.net.URLDecoder;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.http.*;
 
 import org.bson.Document;
-import org.json.JSONArray;
+/*import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+*/
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import garvanza.fm.nio.db.Mongoi;
 
@@ -47,7 +50,7 @@ public class Getthis extends HttpServlet{
 			Integer consummerType=null;
 			if(ct!=null)consummerType=new Integer(ct);
 			System.out.println("list: "+URLDecoder.decode(list,"utf-8")+" code: "+clientCode);
-			try{
+			//try{
 				if(null!=list&&null!=clientCode){
 					String decList=URLDecoder.decode(list,"utf-8");
 					String decCode=URLDecoder.decode(clientCode,"utf-8");
@@ -55,13 +58,16 @@ public class Getthis extends HttpServlet{
 					//Client client=ClientsStore.instance().getClientByCode(decCode);
 					if(consummerType==null)consummerType=new Integer(new Mongoi().doFindOne(Mongoi.CLIENTS, "{ \"code\": \""+clientCode+"\"}").get("consummerType").toString());
 					//int consummerType=client.getConsummerType();
-					JSONArray jsa= new JSONArray(decList);
-					int length=jsa.length();
+					//JSONArray jsa= new JSONArray(decList);
+					
+					List<Document> documents = new Gson().fromJson(decList, new TypeToken<LinkedList<Document>>(){}.getType());
+					
+					int length=documents.size();
 					
 					String json="[ ";
 					for(int i=0;i<length;i++){
-						JSONObject jso=jsa.getJSONObject(i);
-						int productID=new Integer(jso.getInt("id"));
+						Document jso=documents.get(i);
+						int productID=new Integer(jso.getInteger("id"));
 						if(productID==-1){
 							json+=jso.toString()+(i==length-1?"":",");
 						}
@@ -92,8 +98,8 @@ public class Getthis extends HttpServlet{
 					resp.getWriter().print(json);
 
 				}
-			}catch(JSONException e){e.printStackTrace();}
-		}
+			}
+		//}
 		catch(Exception e){
 			e.printStackTrace();
 		}

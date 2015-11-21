@@ -8,16 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.bson.Document;
-/*
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Transient;
-*/
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import com.google.common.collect.Iterators;
 
@@ -87,13 +77,13 @@ public class Product implements Serializable {
 	public static final float FACTOR_4=.945f;
 	
 	public Product(){}
-	public Product(JSONObject json) throws JSONException{
+	public Product(Document json){
 		this.code=json.getString("code");
-		this.unitPrice = (float)json.getDouble("unitprice");
+		this.unitPrice = new Float(json.getDouble("unitprice"));
 		this.unit =json.getString("unit");
 		this.mark=json.getString("mark");
 		this.description = json.getString("description");
-		this.productPriceKind=(int)json.getDouble("productpricekind");
+		this.productPriceKind=json.getInteger("productpricekind");
 	}
 	
 	public Product(String code, float unitPrice, String unit, String mark,String description, int productPriceKind) {

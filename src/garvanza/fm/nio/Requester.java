@@ -1,16 +1,9 @@
 package garvanza.fm.nio;
-/*
-import javax.persistence.Basic;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Transient;
-*/
-import org.json.JSONException;
-import org.json.JSONObject;
+
+import org.bson.Document;
 
 public class Requester {
-	
+
     /*@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)*/
     private Long id;
@@ -32,25 +25,10 @@ public class Requester {
 		consummer=client.getConsummer();
 	}
     
-    public Requester(JSONObject json) {
-    	try {
-			id=json.getLong("id");
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	try {
-			name=json.getString("name");
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			consummer=json.getString("consummer");
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    public Requester(Document json) {
+		id=json.getLong("id");
+		name=json.getString("name");
+		consummer=json.getString("consummer");
 	}
 
 	public String getName() {
