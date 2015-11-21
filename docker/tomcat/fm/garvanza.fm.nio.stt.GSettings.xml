@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<!-- files and folders -->
+	<entry key="TMP_FOLDER">/opt/fm/tmp/</entry>
+
+	<!-- Mongo settings -->
+	<entry key="MONGO_DB_HOST">db</entry>
+	<entry key="MONGO_DB_PORT">27017</entry>
+	<entry key="MONGO_USER">incase</entry>
+	<entry key="MONGO_PASS">incase</entry>
+	<entry key="SPREADSHEET_DB_FILE">/opt/fm/DB.ods</entry>
+	<entry key="SPREADSHEET_DB_FILE_PRODUCTS_SHEET">0</entry>
+	<!-- Printing settings -->
+	<entry key="PRINTER_ONE"></entry>
+	<entry key="PRINTER_TWO"></entry>
+	<entry key="PRINTER_THREE"></entry>
+	<entry key="PRINTER_FOUR"></entry>
+	<entry key="INVOICE_FORM_DESCRIPTOR">/opt/fm/formDescriptorInvoiceFM01.xml</entry>
+
+
+	<!-- Invoicing settings -->
+	<entry key="CERTIFICATE">/opt/fm/auth/CSD01_AAA010101AAA.cer</entry>
+	<entry key="PRIVATE_KEY">/opt/fm/auth/CSD01_AAA010101AAA.key</entry>
+	<entry key="PRIVATE_KEY_PASS">12345678a</entry>
+	<entry key="SSL">/usr/bin/openssl</entry>
+	<entry key="STORE_ID">F1</entry>
+	<entry key="INVOICE_SERIAL">CFDI</entry>
+
+	<entry key="INVOICE_SENDER_NAME">GENERAL</entry>
+	<entry key="INVOICE_SENDER_TAX_CODE">AAA010101AAA</entry>
+	<entry key="INVOICE_SENDER_COUNTRY">MEXICO</entry>
+	<entry key="INVOICE_SENDER_STATE">MICHOACAN</entry>
+	<entry key="INVOICE_SENDER_CITY">MORELIA</entry>
+	<entry key="INVOICE_SENDER_LOCALITY">MORELIA</entry>
+	<entry key="INVOICE_SENDER_SUBURB">VENTURA PUENTE</entry>
+	<entry key="INVOICE_SENDER_STREET">LAGO DE PATZCUARO</entry>
+	<entry key="INVOICE_SENDER_EXTERIOR_NUMBER">128</entry>
+	<entry key="INVOICE_SENDER_INTERIOR_NUMBER">B</entry>
+	<entry key="INVOICE_SENDER_POSTAL_CODE">58020</entry>
+	<entry key="INVOICE_SENDER_REGIME">ACTIVIDADES EMPRESARIALES Y PROFESIONALES</entry>
+	<entry key="INVOICE_CERTIFICATE_AUTHORITY_USER">test@test.com</entry>
+	<entry key="INVOICE_CERTIFICATE_AUTHORITY_PASS">fixme</entry>
+
+	<!-- TAXING -->
+	<entry key="TAXES_IVA_NAME">IVA</entry>
+	<entry key="TAXES_IVA_VALUE">16.0</entry>
+
+	<!-- MAILING -->
+	<entry key="EMAIL_NOTIFICATIONS">test@test.com</entry>
+	<entry key="EMAIL_NOTIFICATIONS_PASS">fixme</entry>
+	<entry key="EMAIL_BODY">GENERAL AGRADECE SU PREFERENCIA</entry>
+
+
+</properties>
+
