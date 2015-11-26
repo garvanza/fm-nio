@@ -1,0 +1,113 @@
+{
+	"version" : 0,
+	"reference" : "0",
+	"invoiceType" : 0,
+	"serial" : 0,
+	"client" : {
+		"code" : "0",
+		"consummer" : "",
+		"consummerType" : 1,
+		"address" : "",
+		"interiorNumber" : "",
+		"exteriorNumber" : "",
+		"suburb" : "",
+		"locality" : "",
+		"city" : "",
+		"country" : "",
+		"state" : "",
+		"email" : "",
+		"cp" : "",
+		"rfc" : "",
+		"tel" : "",
+		"payment" : 0,
+		"reference" : "",
+		"aditionalReference" : ""
+	},
+	"agent" : {
+		"code" : "0",
+		"consummer" : "",
+		"consummerType" : 1,
+		"address" : "",
+		"interiorNumber" : "0",
+		"exteriorNumber" : "0",
+		"suburb" : "",
+		"locality" : "",
+		"city" : "",
+		"country" : "",
+		"state" : "",
+		"email" : "",
+		"cp" : "0",
+		"rfc" : "",
+		"tel" : "",
+		"payment" : 0,
+		"reference" : "",
+		"aditionalReference" : ""
+	},
+	"printedTo" : {
+		"code" : "",
+		"consummer" : "",
+		"consummerType" : 1,
+		"address" : ".",
+		"interiorNumber" : "",
+		"exteriorNumber" : "",
+		"suburb" : "",
+		"locality" : "",
+		"city" : "",
+		"country" : "",
+		"state" : "",
+		"email" : "",
+		"cp" : ".",
+		"rfc" : "",
+		"tel" : "",
+		"payment" : 0,
+		"reference" : "",
+		"aditionalReference" : ""
+	},
+	"shopman" : {
+		"id" : 1,
+		"name" : "",
+		"login" : "",
+		"permissions" : [
+			""
+		]
+	},
+	"items" : [
+		{
+			"quantity" : 1,
+			"id" : 1,
+			"hash" : "1",
+			"code" : "",
+			"mark" : "",
+			"unitPrice" : 1.0,
+			"unit" : "",
+			"description" : "",
+			"stored" : 0,
+			"collecting" : 0,
+			"sending" : 0,
+			"requested" : 0,
+			"missed" : 0,
+			"productPriceKind" : 1,
+			"calls" : 0,
+			"disabled" : false,
+			"edited" : false,
+			"firstTimeInventored" : false
+		}
+	],
+	"creationTime" : 0,
+	"updated" : 0,
+	"logs" : [
+		{
+			"kind" : "",
+			"date" : 0,
+			"value" : true,
+			"login" : ""
+		}
+	],
+	"total" : 1.0,
+	"subTotal" : 1.0,
+	"taxes" : 1.0,
+	"totalValue" : 1.0,
+	"debt" : 1.0,
+	"agentPayment" : 0,
+	"hasElectronicVersion" : false
+}

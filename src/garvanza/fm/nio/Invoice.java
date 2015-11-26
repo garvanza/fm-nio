@@ -13,7 +13,7 @@ public interface Invoice {
 	
 	public Client getClient();
 
-	public InvoiceMetaData getInvoiceMetaData();
+	//public InvoiceMetaData getInvoiceMetaData();
 
 	public List<InvoiceItem> getItems();
 

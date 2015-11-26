@@ -560,7 +560,8 @@ public class DBPort extends HttpServlet{
 			if(requestHasParameter(request, "login")){
 				String login=request.getParameter("login");
 				if(!login.equals("")){
-					Document dbLogin=new Mongoi().doFindOne(Mongoi.SHOPMANS, "{\"login\":\""+login+"\"}");
+					//Document dbLogin=new Mongoi().doFindOne(Mongoi.SHOPMANS, "{\"login\":\""+login+"\"}");
+					Document dbLogin = Shopman.getShopman(login);
 					response.getWriter().print("{\"result\":"+dbLogin.toJson()+"}");
 					return;
 				}

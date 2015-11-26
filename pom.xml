@@ -45,7 +45,7 @@
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
-			<version>3.1.0</version>
+			<version>3.2.0-rc0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.collections</groupId>
@@ -57,11 +57,8 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
-		<!--dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20090211</version>
-		</dependency-->
+		<!--dependency> <groupId>org.json</groupId> <artifactId>json</artifactId> 
+			<version>20090211</version> </dependency -->
 		<dependency>
 			<groupId>com.lowagie</groupId>
 			<artifactId>itext</artifactId>
@@ -87,7 +84,17 @@
 			<artifactId>cfdi-base</artifactId>
 			<version>0.2.5</version>
 		</dependency>
-
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>1.10.19</version>
+		</dependency>
 	</dependencies>
 
 

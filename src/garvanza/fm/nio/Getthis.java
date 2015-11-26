@@ -67,7 +67,8 @@ public class Getthis extends HttpServlet{
 					String json="[ ";
 					for(int i=0;i<length;i++){
 						Document jso=documents.get(i);
-						int productID=new Integer(jso.getInteger("id"));
+						System.out.println(new Gson().toJson(jso));
+						int productID=(int) jso.getDouble("id").longValue();
 						if(productID==-1){
 							json+=jso.toString()+(i==length-1?"":",");
 						}

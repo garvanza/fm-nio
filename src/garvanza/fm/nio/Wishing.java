@@ -60,7 +60,7 @@ public class Wishing extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		try{
 			int clientReference=new Integer(request.getParameter("clientReference"));
 			OnlineClient onlineClient=OnlineClients.instance().get(clientReference);
@@ -87,6 +87,19 @@ public class Wishing extends HttpServlet {
 			String argsParam=request.getParameter("args");
 			String commandParam=request.getParameter("command");
 			System.out.println("wishing '"+argsParam+"'");
+			System.out.println(""
+					+"clientParam:"+request.getParameter("client")+"\n"
+					+"listParam:"+request.getParameter("list")+"\n"
+					+"sellerParam:"+request.getParameter("seller")+"\n"
+					+"agentParam:"+request.getParameter("agent")+"\n"
+					+"requesterParam:"+request.getParameter("requester")+"\n"
+					+"shopmanParam:"+request.getParameter("shopman")+"\n"
+					+"destinyParam:"+request.getParameter("destiny")+"\n"
+					+"argsParam:"+request.getParameter("args")+"\n"
+					+"commandParam:"+request.getParameter("command")+"\n"
+					);
+			boolean true_=true;
+			if(true_)return;
 			Float payment=0f;
 			if(null!=clientParam&&null!=listParam){
 				String listJson=URLDecoder.decode(listParam,"utf-8");
@@ -98,7 +111,7 @@ public class Wishing extends HttpServlet {
 				String destinyJson=URLDecoder.decode(destinyParam,"utf-8");
 				String args=URLDecoder.decode(argsParam,"utf-8");
 				String command=URLDecoder.decode(commandParam,"utf-8");
-				Document jList=null;
+				LinkedList<InvoiceItem> jList=null;
 				Document jClient=null;
 				Document jSeller=null;
 				Document jAgent=null;
@@ -113,23 +126,30 @@ public class Wishing extends HttpServlet {
 				Destiny destiny=null;
 				Requester requester=null;
 				
-					jList=new Gson().fromJson(listJson, new TypeToken <LinkedList<Document>>(){}.getType());
-					jClient=new Gson().fromJson(listJson, Document.class);
+					items=jList=new Gson().fromJson(listJson, new TypeToken <LinkedList<Document>>(){}.getType());
+					jClient=new Gson().fromJson(clientJson, Document.class);
 					jSeller=new Gson().fromJson(sellerJson, Document.class);
 					jAgent=new Gson().fromJson(agentJson, Document.class);
 					jRequester=new Gson().fromJson(requesterJson, Document.class);
 					jShopman=new Gson().fromJson(shopmanJson, Document.class);
 					jDestiny=new Gson().fromJson(destinyJson, Document.class);
 					
-					seller=new Seller(jSeller);
+					jList=new Gson().fromJson(listJson, new TypeToken <LinkedList<InvoiceItem>>(){}.getType());
+					client=new Gson().fromJson(clientJson, Client.class);
+					seller=new Gson().fromJson(sellerJson, Seller.class);
+					agent=new Gson().fromJson(agentJson, Client.class);
+					requester=new Gson().fromJson(requesterJson, Requester.class);
+					//shopman=new Gson().fromJson(shopmanJson, Shopman.class);
+					destiny=new Gson().fromJson(destinyJson, Destiny.class);
+					
+					//seller=new Seller(jSeller);
 					shopman=onlineClient.getShopman();
-					destiny=new Destiny(jDestiny);
-					requester=new Requester(jRequester);
+					//destiny=new Destiny(jDestiny);
+					//requester=new Requester(jRequester);
 					for(int i=jList.size()-1;i>=0;i--){
-						//InvoiceItem item=new InvoiceItem(jList.getJSONObject(i));
-						InvoiceItem item=new Gson().fromJson(jList.get(i).toString(), InvoiceItem.class);
+						//InvoiceItem item=new Gson().fromJson(jList.get(i).toString(), InvoiceItem.class);
 						//System.out.println(item.toJson());
-						items.add(item);
+						//items.add(item);
 					}
 					client=ClientFactory.create(jClient);
 					agent=ClientFactory.create(jAgent);
@@ -469,6 +489,7 @@ public class Wishing extends HttpServlet {
 					
 					
 					String subject=null;
+					/*
 					if(invoice.getInvoiceMetaData().getInvoiceType()==InvoiceFM01.INVOICE_TYPE_ORDER){
 						subject="Pedido "+GSettings.get("STORE_ID")+" ";
 					}
@@ -479,6 +500,7 @@ public class Wishing extends HttpServlet {
 						subject="Factura "+GSettings.get("STORE_ID")+":"+GSettings.get("INVOICE_SERIAL")+" ";
 					}
 					subject+=invoice.getInvoiceMetaData().getReference()+" : $"+invoice.getTotal();
+					*/
 					System.out.println(subject);
 					for(int i=0;i<paths.length;i++){
 						System.out.print("mailing "+paths[i]);

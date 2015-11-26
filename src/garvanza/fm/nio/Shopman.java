@@ -75,13 +75,23 @@ public class Shopman {
     	else return false;
     }
     
-    
+    public static Document getShopman(String login){
+    	Document dbObject= new Mongoi().doFindOne(Mongoi.SHOPMANS, "{ \"login\" : \""+login+"\" }");
+    	if(dbObject!=null){
+   			dbObject.replace("password", "");
+   			return dbObject;
+   		}
+    	else return null;
+    }
     
     public static Document getShopman(String login, String password){
     	Document dbObject= new Mongoi().doFindOne(Mongoi.SHOPMANS, "{ \"login\" : \""+login+"\" }");
     	if(dbObject!=null){
     		String pass=dbObject.get("password").toString();
-    		if(pass.equals(MD5.get(password)))return dbObject;
+    		if(pass.equals(MD5.get(password))){
+    			dbObject.replace("password", "");
+    			return dbObject;
+    		}
     		else return null;
     	}
     	else return null;

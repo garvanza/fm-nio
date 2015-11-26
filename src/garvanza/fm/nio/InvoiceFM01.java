@@ -110,6 +110,12 @@ public class InvoiceFM01 implements Invoice{
 		}
 	}*/
 	
+	public InvoiceFM01(Client client, Agent agent, Shopman shopman,
+			List<InvoiceItem> items, InvoiceMetaData metaData,
+			Requester requester, Destiny destiny, Float payment) {
+		
+	}
+	
 	public InvoiceFM01(Client client, Seller seller, Shopman shopman,
 			List<InvoiceItem> items, InvoiceMetaData metaData,
 			Requester requester, Destiny destiny, Client agent,Float payment) {
@@ -268,7 +274,7 @@ public class InvoiceFM01 implements Invoice{
 		return client;
 	}
 
-	@Override
+	
 	public InvoiceMetaData getInvoiceMetaData() {
 		// TODO Auto-generated method stub
 		return metaData;

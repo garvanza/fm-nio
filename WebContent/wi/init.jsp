@@ -604,7 +604,7 @@ $(document).ready(function(){
 					type: 'POST',
 					url: 'wishing',
 					data: {
-						client : encodeURIComponent($.toJSON(client)),
+						/*client : encodeURIComponent($.toJSON(client)),
 						list : encodeURIComponent($.toJSON(productsLog)),
 						shopman : encodeURIComponent($.toJSON(shopman)),
 						metadata : encodeURIComponent($.toJSON(metadata)),
@@ -616,6 +616,32 @@ $(document).ready(function(){
 						token : TOKEN,
 						command: commandline.command,
     					clientReference : CLIENT_REFERENCE
+    					*/
+    					client : $.toJSON(client),
+						list : $.toJSON(productsLog),
+						shopman : $.toJSON(shopman),
+						metadata : $.toJSON(metadata),
+						requester : $.toJSON(requester),
+						seller : $.toJSON(seller),
+						agent : $.toJSON(agent),
+						destiny : $.toJSON(destiny),
+						args : commandline.args.join(" "),
+						token : TOKEN,
+						command: commandline.command,
+    					clientReference : CLIENT_REFERENCE
+    					
+						/*client : client,
+						list : productsLog,
+						shopman : shopman,
+						metadata : metadata,
+						requester : requester,
+						seller : seller,
+						agent : agent,
+						destiny : destiny,
+						args : encodeURIComponent(commandline.args.join(" ")),
+						token : TOKEN,
+						command: commandline.command,
+    					clientReference : CLIENT_REFERENCE*/
 					},
 					success: function(data){
 						resetClient();

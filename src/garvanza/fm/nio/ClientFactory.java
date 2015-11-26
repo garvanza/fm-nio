@@ -7,7 +7,7 @@ public class ClientFactory{
 	private ClientFactory(){}
 	
 	public static Client create(Document json){
-		System.out.println("creating client for "+json.toString());
+		System.out.println("creating client for "+json.toJson());
 		Client client=null;
 			String code="";
 			if(json.containsKey("code")){
@@ -19,7 +19,7 @@ public class ClientFactory{
 			}
 			int consummerType=1;
 			if(json.containsKey("consummerType")){
-				consummerType=new Integer(json.getInteger("consummerType"));
+				consummerType=new Integer(json.getDouble("consummerType").intValue());
 			}
 			String address="";
 			if(json.containsKey("address")){
@@ -71,7 +71,7 @@ public class ClientFactory{
 			}
 			int payment=0;
 			if(json.containsKey("payment")){
-				payment=new Integer(json.getInteger("payment"));
+				payment=new Integer(json.getDouble("payment").intValue());
 			}
 			String reference="";
 			if(json.containsKey("reference")){
